@@ -6,7 +6,10 @@ const WelcomeSection = async () => {
 	console.log('Полученные данные:', data)
 	console.log('Тип данных:', Array.isArray(data)) // Проверяем, это ли массив
 	const counts = data.items.reduce(
-		(acc, ad) => {
+		(
+			acc: { carsCount: number; realtyCount: number; servicesCount: number },
+			ad: { type: string }
+		) => {
 			if (ad.type === 'Авто') {
 				acc.carsCount += 1
 			} else if (ad.type === 'Недвижимость') {

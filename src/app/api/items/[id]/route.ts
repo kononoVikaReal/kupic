@@ -1,13 +1,13 @@
+'use server'
 import { NextResponse } from 'next/server'
 // Базовый URL для запросов на сервер
-const API_BASE_URL = 'http://localhost:3001/items'
-
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
+// const API_BASE_URL = 'http://localhost:3001/items'
 export async function GET(
 	req: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	const { id } = await params
-
 	console.log('Param id -> ', id)
 	console.log(`API URL -> http://localhost:3001/items/${id}`)
 	try {
@@ -43,7 +43,7 @@ export async function GET(
 
 export async function PUT(
 	req: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	const { id } = await params
 
@@ -76,7 +76,7 @@ export async function PUT(
 
 export async function DELETE(
 	req: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	const { id } = await params
 

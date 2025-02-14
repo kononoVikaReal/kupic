@@ -1,6 +1,12 @@
 import WelcomeSection from '@/components/WelcomeSection/WelcomeSection'
 import Link from 'next/link'
 
+// https://medium.com/@harisbaig100/error-occurred-prerendering-page-heres-the-fix-1b7d60aa6396
+// Принудительный динамический рендеринг, чтобы обеспечить рендеринг страницы во время запроса
+export const dynamic = 'force-dynamic'
+// Отключаем кэширование запросов на выборку, чтобы всегда получать свежие данные
+export const fetchCache = 'force-no-store'
+
 export default function Home() {
 	return (
 		<div className='max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl xxl:max-w-screen-xxl mx-auto flex flex-col justify-center items-center gap-28'>
