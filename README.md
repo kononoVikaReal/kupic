@@ -89,11 +89,12 @@ npm start
 kupic/
 ├── src/
 │   ├── app/              # App router pages
+│   │   └── api/          # API routes
 │   ├── components/       # Reusable components
-│   ├── api/              # API routes
-│   └── styles/           # Global styles
-├── public/               # Static assets
-└── types/                # TypeScript type definitions
+│   ├── lib/              # Utility functions and shared logic
+│   │
+│   └── db/               # Database simulation
+└── public/               # Static public assets
 ```
 
 ## API Routes
@@ -101,11 +102,13 @@ kupic/
 The application uses RESTful API endpoints:
 
 ```http
-GET    /api/items        # Retrieve all items
-GET    /api/items/:id    # Retrieve specific item
-POST   /api/items        # Create a new item
-PUT    /api/items/:id    # Update an existing item
-DELETE /api/items/:id    # Delete an item
+GET    /api/items         # Retrieve all items
+GET    /api/items/:id     # Retrieve specific item
+POST   /api/items         # Create a new item
+PUT    /api/items/:id     # Update an existing item
+DELETE /api/items/:id     # Delete an item
+GET    /api/verifySession # Verifying the presence and authenticity of the user's session
+POST    /api/login        # User authorization and session saving in cookies
 ```
 
 ## Development Decisions
