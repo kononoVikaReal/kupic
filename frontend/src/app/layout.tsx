@@ -1,6 +1,7 @@
 import Header from '@/components/Header/Header'
 import type { Metadata } from 'next'
 import { Manrope } from 'next/font/google'
+import Head from 'next/head'
 import './globals.css'
 
 const manrope = Manrope({
@@ -11,7 +12,8 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
 	title: 'KUPIC -> Главная',
-	description: 'KUPIC -> Мечтай. Выбирай. Воплощай!',
+	description:
+		'KUPIC -> Онлайн-площадка для размещения объявлений. Мечтай. Выбирай. Воплощай!',
 }
 
 export default function RootLayout({
@@ -21,6 +23,10 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
+			<Head>
+				<link rel='icon' href='/favicon.ico' sizes='any' />
+			</Head>
+
 			<body className={`${manrope.variable} ${manrope.variable} antialiased`}>
 				<Header />
 				{children}

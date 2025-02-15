@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
 			{ status: 200 }
 		)
 	} catch (error: unknown) {
-		// console.log('Login error ->', error)
+		console.error('Login error ->', error)
 		return new NextResponse(
 			JSON.stringify({ message: 'Ошибка при авторизации' }),
 			{ status: 500 }

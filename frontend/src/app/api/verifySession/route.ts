@@ -12,7 +12,7 @@ export async function GET(req: NextRequest) {
 
 		return NextResponse.json(session)
 	} catch (error) {
-		// console.log('Verify session error -> ', error)
+		console.error('Verify session error -> ', error)
 		return NextResponse.json(
 			{ isAuth: false, message: 'Ошибка сервера' },
 			{ status: 500 }

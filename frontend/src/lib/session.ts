@@ -29,7 +29,7 @@ export async function createSession(
 		})
 
 		// Iемедленная пост-проверка
-		const allCookies = cookieStore.getAll()
+		// const allCookies = cookieStore.getAll()
 		// console.log('Post-cookie set state:', {
 		// 	allCookies,
 		// 	sessionCookie: cookieStore.get('session'),
