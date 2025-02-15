@@ -35,113 +35,123 @@ Before you begin, ensure you have installed:
 
 ## Installation
 
-1. Clone the repository:
+### Clone the repository:
 
 ```bash
 git clone https://github.com/kononoVikaReal/kupic
 cd kupic
+```
 
+### Install dependencies:
 
-Install dependencies:
-
+```bash
 npm install
+```
 
-bash
-Set up environment variables:
+### Set up environment variables:
 
-Create .env file:
+Create a `.env` file and add the following:
 
+```ini
 NEXT_PUBLIC_API_URL=http://localhost:3001/items
+SESSION_SECRET=ANY_SECRET_KEY
+```
 
-#Running the Application
-##Development Mode
+## Running the Application
+
+### Development Mode:
+
 Start the development server:
 
+```bash
 npm run dev
+```
 
-bash
-Open http://localhost:3000 in your browser
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-##Production Mode
+### Production Mode:
+
 Build the application:
 
+```bash
 npm run build
+```
 
-bash
 Start the production server:
 
+```bash
 npm start
+```
 
-bash
-#Project Structure
+## Project Structure
+
+```
 kupic/
 ├── src/
 │   ├── app/              # App router pages
+│   │   └── api/          # API routes
 │   ├── components/       # Reusable components
-│   ├── api/             # API routes
-│   └── styles/          # Global styles
-├── public/              # Static assets
-└── types/              # TypeScript type definitions
+│   ├── lib/              # Utility functions and shared logic
+│   │
+│   └── db/               # Database simulation
+└── public/               # Static public assets
+```
 
-text
-#API Routes
+## API Routes
+
 The application uses RESTful API endpoints:
 
-GET /api/items - Retrieve all items
-
-GET /api/items/:id - Retrieve specific item
-
-POST /api/items - Create new item
-
-PUT /api/items/:id - Update existing item
-
-DELETE /api/items/:id - Delete item
-
-#Development Decisions
-##App Router (Next.js 15)
-Provides more intuitive routing structure
-
-Better performance with React Server Components
-
-Simplified API route handling
-
-##Server Components
-Reduced client-side JavaScript
-
-Better initial page load performance
-
-Improved SEO capabilities
-
-##Environment Configuration
-Separate development and production environments
-
-Secure handling of sensitive data
-
-Easy deployment configuration
-
-##Contributing
-Create a feature branch
-
-Commit your changes
-
-Push to the branch
-
-Create a Pull Request
-
-##Scripts
-npm run dev - Start development server
-
-npm run build - Build production application
-
-npm start - Start production server
-
-npm run lint - Run ESLint
-
-##Notes
-Ensure all environment variables are properly set before running the application
-
-The API (backend) server must be running on port 3001 for local API calls
-
-#License
-License MIT
+```http
+GET    /api/items         # Retrieve all items
+GET    /api/items/:id     # Retrieve specific item
+POST   /api/items         # Create a new item
+PUT    /api/items/:id     # Update an existing item
+DELETE /api/items/:id     # Delete an item
+GET    /api/verifySession # Verifying the presence and authenticity of the user's session
+POST    /api/login        # User authorization and session saving in cookies
 ```
+
+## Development Decisions
+
+### App Router (Next.js 15)
+
+- Provides a more intuitive routing structure
+- Enhances performance with React Server Components
+- Simplifies API route handling
+
+### Server Components
+
+- Reduces client-side JavaScript load
+- Improves initial page load performance
+- Enhances SEO capabilities
+
+### Environment Configuration
+
+- Separate development and production environments
+- Secure handling of sensitive data
+- Easy deployment configuration
+
+## Contributing
+
+1. Create a feature branch
+2. Commit your changes
+3. Push to the branch
+4. Create a Pull Request
+
+## Scripts
+
+```bash
+npm run dev     # Start development server
+npm run build   # Build production application
+npm start      # Start production server
+npm run lint    # Run ESLint
+```
+
+## Notes
+
+- Ensure all environment variables are properly set before running the application.
+- The API (backend) server must be running on port `3001` for local API calls.
+
+## License
+
+MIT
