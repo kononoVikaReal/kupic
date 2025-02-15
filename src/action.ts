@@ -57,10 +57,10 @@ const serviceSchema = z.object({
 const loginSchema = z.object({
 	username: z
 		.string()
-		.min(4, { message: 'Минимальная длина логина 8 символов!' }),
+		.min(4, { message: 'Минимальная длина логина 4 символов!' }),
 	password: z
 		.string()
-		.min(8, { message: 'Минимальная длина пароля 8 символов!' }),
+		.min(4, { message: 'Минимальная длина пароля 4 символов!' }),
 })
 
 // Базовый URL для отправки запросов
@@ -488,7 +488,7 @@ export const login = async (
 				password: loginData.password,
 			}
 		}
-
+		revalidatePath('/dashboard')
 		return {
 			success: true,
 			error: false,

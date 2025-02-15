@@ -104,7 +104,7 @@ The application uses RESTful API endpoints:
 ```http
 GET    /api/items         # Retrieve all items
 GET    /api/items/:id     # Retrieve specific item
-POST   /api/items         # Create a new item
+POST   /api/items         # Create a new item (The IDs of the created ads will be saved in the 'items' key in localStorage)
 PUT    /api/items/:id     # Update an existing item
 DELETE /api/items/:id     # Delete an item
 GET    /api/verifySession # Verifying the presence and authenticity of the user's session
@@ -151,6 +151,10 @@ npm run lint    # Run ESLint
 
 - Ensure all environment variables are properly set before running the application.
 - The API (backend) server must be running on port `3001` for local API calls.
+
+## Template Data
+
+- In the file templateData.txt In folder public, you will find objects that you can POST to [/api/items](http://localhost:3001/items) to have something to work with.
 
 ## License
 

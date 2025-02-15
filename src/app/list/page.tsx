@@ -13,7 +13,7 @@ import { useEffect, useMemo, useState } from 'react'
 // Для пагинации
 const ITEMS_PER_PAGE = 5
 
-type ItemType = {
+export type ItemType = {
 	id: number
 	name: string
 	description: string
@@ -168,7 +168,7 @@ const AdsPage = () => {
 						setSubFilters={setSubFilters}
 					/>
 				)}
-
+				{/* Карточки объявлений */}
 				<div className='mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-3'>
 					{items.map(item => (
 						<div
@@ -238,6 +238,7 @@ const AdsPage = () => {
 									onClick={() => router.push(`/item/${item.id}`)}
 									className='w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium py-2 rounded-lg hover:opacity-90'
 								>
+									{/* Это объявления пользователя или нет? */}
 									{userItems.includes(item.id)
 										? 'Открыть (это ваше объявление)'
 										: 'Открыть'}

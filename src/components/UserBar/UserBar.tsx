@@ -2,6 +2,7 @@
 import { login } from '@/action'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useActionState, useEffect, useRef, useState } from 'react'
 
 const UserBar = () => {
@@ -9,7 +10,7 @@ const UserBar = () => {
 	const [showMenu, setShowMenu] = useState<boolean>(false)
 	const [username, setUsername] = useState<string>('гость')
 	const [loginForm, setLoginForm] = useState<boolean>(false)
-
+	const pathname = usePathname()
 	const [state, formAction] = useActionState(login, {
 		success: false,
 		error: false,
@@ -75,25 +76,27 @@ const UserBar = () => {
 					<span className='text-xl text-gray-800 dark:text-gray-200'>
 						Привет, {username}!
 					</span>
-					<svg
-						width='24'
-						height='24'
-						viewBox='0 0 24 24'
-						fill='none'
-						xmlns='http://www.w3.org/2000/svg'
-						className='cursor-pointer'
-						onClick={() => {
-							setShowMenu(!showMenu)
-						}}
-					>
-						<path
-							d='M7 11C7 11 12.1554 18 14 18C15.8447 18 21 11 21 11'
-							stroke='black'
-							strokeWidth='1.75'
-							strokeLinecap='round'
-							strokeLinejoin='round'
-						/>
-					</svg>
+					{pathname !== '/dashboard' && (
+						<svg
+							width='24'
+							height='24'
+							viewBox='0 0 24 24'
+							fill='none'
+							xmlns='http://www.w3.org/2000/svg'
+							className='cursor-pointer'
+							onClick={() => {
+								setShowMenu(!showMenu)
+							}}
+						>
+							<path
+								d='M7 11C7 11 12.1554 18 14 18C15.8447 18 21 11 21 11'
+								stroke='black'
+								strokeWidth='1.75'
+								strokeLinecap='round'
+								strokeLinejoin='round'
+							/>
+						</svg>
+					)}
 				</div>
 			</div>
 			<div className='flex justify-center'>
@@ -107,7 +110,7 @@ const UserBar = () => {
 					</button>
 				)}
 				{/* ПРОСМОТРЕТЬ СВОИ ОБЪЯВЛЕНИЯ */}
-				{showMenu && isAuth && (
+				{showMenu && isAuth && pathname !== '/dashboard' && (
 					<Link
 						className='bg-[#00AAFF] rounded-3xl shadow-md max-w-md p-2 text-white'
 						href={'/dashboard'}
