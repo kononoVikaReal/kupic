@@ -50,9 +50,7 @@ const WelcomeSection = async () => {
 		<div className='flex h-full w-full items-center justify-center mb-24'>
 			<div className='grid  h-full w-full gap-4 bg-gray-200 p-3 lg:grid-cols-3 lg:grid-rows-3 rounded-3xl shadow-md'>
 				<div className='lg:col-span-1 col-span-2 row-span-1 bg-[#04E061] rounded-3xl shadow-md flex items-center justify-center text-white text-4xl gap-4 p-4 text-center flex-col lg:flex-row'>
-					<p>
-						{carsCount} {getCountText(carsCount, 'машина', 'машины', 'машин')}
-					</p>
+					<p>{getCountText(carsCount, 'машина', 'машины', 'машин')}</p>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 24 24'
@@ -81,10 +79,7 @@ const WelcomeSection = async () => {
 				</div>
 
 				<div className='col-span-2 row-span-3 bg-[#FF4053] rounded-3xl shadow-md flex items-center justify-center text-white text-4xl gap-4 p-4 text-center flex-col lg:flex-row'>
-					<p>
-						{servicesCount}{' '}
-						{getCountText(servicesCount, 'услуга', 'услуги', 'услуг')}
-					</p>
+					<p>{getCountText(servicesCount, 'услуга', 'услуги', 'услуг')}</p>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 24 24'
@@ -118,10 +113,7 @@ const WelcomeSection = async () => {
 				</div>
 
 				<div className='lg:col-span-1 col-span-2 row-span-2 bg-[#00AAFF] rounded-3xl  shadow-md flex items-center justify-center text-white text-4xl gap-4 p-4 text-center flex-col lg:flex-row'>
-					<p>
-						{realtyCount}{' '}
-						{getCountText(realtyCount, 'квартира', 'квартиры', 'квартир')}
-					</p>
+					<p>{getCountText(realtyCount, 'квартира', 'квартиры', 'квартир')}</p>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 24 24'
