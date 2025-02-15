@@ -14,6 +14,25 @@ export const metadata: Metadata = {
 	title: 'KUPIC -> Главная',
 	description:
 		'KUPIC -> Онлайн-площадка для размещения объявлений. Мечтай. Выбирай. Воплощай!',
+	keywords:
+		'KUPIC, Купис, КУПИ-С, КУПИС онлайн, Купис клон авито, авито клон купис',
+	viewport: 'width=device-width, initial-scale=1.0',
+	openGraph: {
+		title: 'KUPIC -> Онлайн-площадка для размещения объявлений.',
+		description:
+			'KUPIC -> Онлайн-площадка для размещения объявлений. Мечтай. Выбирай. Воплощай!',
+		url: 'https://kupic.best/',
+		siteName: 'KUPIC -> Онлайн-площадка для размещения объявлений.',
+		images: [
+			{
+				url: 'https://kupic.best/kupic.png',
+				width: 800,
+				height: 600,
+			},
+		],
+		locale: 'ru_RU',
+		type: 'website',
+	},
 }
 
 export default function RootLayout({
