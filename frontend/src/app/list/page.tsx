@@ -27,6 +27,7 @@ export interface FiltersState {
 }
 
 const AdsPage = () => {
+	const [isAuth, setIsAuth] = useState<boolean>(false)
 	const [userItems, setUserItems] = useState<number[]>([])
 	const [items, setItems] = useState<ItemType[]>([])
 	const [page, setPage] = useState(1)
@@ -62,6 +63,19 @@ const AdsPage = () => {
 			clearTimeout(timeout) // Очищаем таймер при размонтировании или изменении isLoading
 		}
 	}, [isLoading])
+
+	useEffect(() => {
+		const checkSession = async () => {
+			const response = await fetch('/api/verifySession', {
+				method: 'GET',
+				credentials: 'include',
+			})
+			if (response.status === 200) {
+				setIsAuth(true)
+			}
+		}
+		checkSession()
+	}, [])
 
 	const router = useRouter()
 
@@ -137,11 +151,13 @@ const AdsPage = () => {
 					/>
 				</div>
 
-				<div className=''>
-					<Button onClick={() => router.push(`/form`)} className=''>
-						Разместить объявление
-					</Button>
-				</div>
+				{isAuth && (
+					<div className=''>
+						<Button onClick={() => router.push(`/form`)} className=''>
+							Разместить объявление
+						</Button>
+					</div>
+				)}
 			</div>
 			{showLoader && (
 				<div className='flex gap-12 justify-center items-center h-[80vh]'>
