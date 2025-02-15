@@ -34,7 +34,8 @@ type Ad = Reality &
 	}
 
 // Базовый URL для запросов на сервер
-const API_BASE_URL = 'http://localhost:3001/items'
+// const API_BASE_URL = 'http://localhost:3001/items'
+const API_BASE_URL = 'http://backend:3001/items'
 
 export async function GET(request: NextRequest) {
 	const searchParams = request.nextUrl.searchParams
