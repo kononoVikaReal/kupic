@@ -154,7 +154,7 @@ npm run lint    # Run ESLint
 
 ## Template Data
 
-- In the file templateData.txt In folder public, you will find objects that you can POST to [/api/items](http://localhost:3001/items) to have something to work with.
+- In the file `templateData.txt` In folder `/public`, you will find objects that you can POST to [/api/items](http://localhost:3001/items) to have something to work with.
 
 ## License
 
