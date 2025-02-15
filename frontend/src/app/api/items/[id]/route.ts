@@ -8,8 +8,8 @@ export async function GET(
 	{ params }: { params: Promise<{ id: string }> }
 ) {
 	const { id } = await params
-	console.log('Param id -> ', id)
-	console.log(`API URL -> http://localhost:3001/items/${id}`)
+	// console.log('Param id -> ', id)
+	// console.log(`API URL -> http://localhost:3001/items/${id}`)
 	try {
 		const response = await fetch(`${API_BASE_URL}/${id}`)
 

@@ -6,8 +6,8 @@ const WelcomeSection = async () => {
 		return <div>Ошибка загрузки данных с сервера</div>
 	}
 	const data = await res.json()
-	console.log('Полученные данные:', data)
-	console.log('Тип данных:', Array.isArray(data)) // Проверяем, это ли массив
+	// console.log('Полученные данные:', data)
+	// console.log('Тип данных:', Array.isArray(data)) // Проверяем, это ли массив
 	const counts = data.items.reduce(
 		(
 			acc: { carsCount: number; realtyCount: number; servicesCount: number },

@@ -179,7 +179,7 @@ const EditForm = ({ itemData }: { itemData: ItemDataType }) => {
 	const [isEditing, setIsEditing] = useState(false)
 	const [formData, setFormData] = useState(itemData)
 	const [userItems, setUserItems] = useState<number[]>([])
-	console.log('Item ->', itemData)
+	// console.log('Item ->', itemData)
 	useEffect(() => {
 		const items = getItems()
 		setUserItems(items)
@@ -197,7 +197,7 @@ const EditForm = ({ itemData }: { itemData: ItemDataType }) => {
 		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
 	) => {
 		const { name, value } = e.target
-		console.log('Проверка handlechange ', name, value) // проверка, что приходит из input
+		// console.log('Проверка handlechange ', name, value) // проверка, что приходит из input
 		setFormData(prev => ({ ...prev, [name]: value }))
 	}
 

@@ -14,12 +14,11 @@ export async function createSession(
 		const session = await encrypt({ name, password, email, isAdmin, expiresAt })
 		const cookieStore = await cookies()
 
-		// More detailed debug logging
-		console.log('Pre-cookie set state:', {
-			currentCookies: cookieStore.getAll(),
-			newSession: session.substring(0, 20) + '...',
-			cookieStoreState: cookieStore,
-		})
+		// console.log('Pre-cookie set state:', {
+		// 	currentCookies: cookieStore.getAll(),
+		// 	newSession: session.substring(0, 20) + '...',
+		// 	cookieStoreState: cookieStore,
+		// })
 
 		cookieStore.set('session', session, {
 			httpOnly: true,
@@ -29,12 +28,12 @@ export async function createSession(
 			path: '/',
 		})
 
-		// Immediate verification
+		// Iемедленная пост-проверка
 		const allCookies = cookieStore.getAll()
-		console.log('Post-cookie set state:', {
-			allCookies,
-			sessionCookie: cookieStore.get('session'),
-		})
+		// console.log('Post-cookie set state:', {
+		// 	allCookies,
+		// 	sessionCookie: cookieStore.get('session'),
+		// })
 
 		return session
 	} catch (error) {
@@ -46,7 +45,6 @@ export async function createSession(
 export const verifySession = cache(async () => {
 	try {
 		const cookie = (await cookies()).get('session')?.value
-		console.log('cookie: ', cookie)
 		if (!cookie) {
 			return null // Просто возвращаем null, без throw
 		}

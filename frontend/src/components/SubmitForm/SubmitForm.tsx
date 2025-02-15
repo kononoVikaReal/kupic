@@ -51,14 +51,14 @@ const SubmitForm = () => {
 		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
 	) => {
 		const { name, value } = e.target
-		console.log({ name, value })
+		// console.log({ name, value })
 		setFormData(prev => ({ ...prev, [name]: value }))
 	}
 
 	const formRef = useRef<HTMLFormElement | null>(null)
 
 	useEffect(() => {
-		console.log('Look at step -> ', currentStep)
+		// console.log('Look at step -> ', currentStep)
 		if (state.success) {
 			if (currentStep === 2) {
 				formRef.current?.reset()
@@ -86,15 +86,12 @@ const SubmitForm = () => {
 				}
 				setCurrentStep(1)
 				state.step = 1
-				console.log('Changed step to 1!')
 			} else {
 				setCurrentStep(2)
-				console.log('Changed step to 2!')
 			}
 		} else {
 			if (state.step === 1) {
 				setCurrentStep(1)
-				console.log('Changed step to 1 at step 2!')
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps

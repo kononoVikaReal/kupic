@@ -193,7 +193,7 @@ export async function POST(request: Request) {
 	try {
 		// Получаем тело запроса
 		const body = await request.json()
-		console.log('POST REQUEST -> ', JSON.stringify(body))
+		// console.log('POST REQUEST -> ', JSON.stringify(body))
 		// Валидация данных
 		const {
 			name,

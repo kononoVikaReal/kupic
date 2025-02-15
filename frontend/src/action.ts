@@ -249,7 +249,7 @@ export const addAd = async (
 
 		// Парсим успешный ответ
 		const result = await response.json()
-		console.log('Успешно отправлено:', result)
+		// console.log('Успешно отправлено:', result)
 		return {
 			success: true,
 			error: false,
@@ -285,7 +285,7 @@ export const editAd = async (
 		type: formData.get('type'),
 		image: formData.get('image'),
 	}
-	console.log('baseData -> ', baseData)
+	// console.log('baseData -> ', baseData)
 
 	// Валидируем общие данные
 	const baseValidation = editBaseSchema.safeParse(baseData)

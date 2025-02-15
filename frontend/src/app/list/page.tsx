@@ -81,7 +81,7 @@ const AdsPage = () => {
 
 	const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchQuery(e.target.value)
-		console.log('Changed search query on ->', searchQuery)
+		// console.log('Changed search query on ->', searchQuery)
 		setPage(1)
 	}
 
@@ -117,11 +117,11 @@ const AdsPage = () => {
 
 			const userData = getItems()
 			setUserItems(userData)
-			console.log('UserData -> ', userData)
-			console.log(
-				'ItemsData -> ',
-				data.items.map((data: { id: unknown }) => data.id)
-			)
+			// console.log('UserData -> ', userData)
+			// console.log(
+			// 	'ItemsData -> ',
+			// 	data.items.map((data: { id: unknown }) => data.id)
+			// )
 
 			setItems(data.items)
 			setIsLoading(false)

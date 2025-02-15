@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
 
 		const isAdmin = false
 
-		console.log('Создаём сессию')
+		// console.log('Создаём сессию')
 		// Создаём сессию
 		const session = await createSession(
 			username,
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
 			isAdmin
 		)
 
-		console.log('Устанавливаем куки с сессией')
+		// console.log('Устанавливаем куки с сессией')
 		// Устанавливаем куки с сессией
 		const response = NextResponse.json({
 			login: username,
@@ -47,7 +47,7 @@ export async function POST(req: NextRequest) {
 			expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 дней
 		})
 
-		console.log('Авторизация прошла успешно')
+		// console.log('Авторизация прошла успешно')
 		return new NextResponse(
 			JSON.stringify({
 				message: 'Авторизация прошла успешно',
@@ -58,7 +58,7 @@ export async function POST(req: NextRequest) {
 			{ status: 200 }
 		)
 	} catch (error: unknown) {
-		console.log('Login error ->', error)
+		// console.log('Login error ->', error)
 		return new NextResponse(
 			JSON.stringify({ message: 'Ошибка при авторизации' }),
 			{ status: 500 }
