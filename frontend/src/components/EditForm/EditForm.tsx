@@ -176,6 +176,7 @@ const AdCard = ({
 )
 
 const EditForm = ({ itemData }: { itemData: ItemDataType }) => {
+	const [isAuth, setIsAuth] = useState<boolean>(false)
 	const [isEditing, setIsEditing] = useState(false)
 	const [formData, setFormData] = useState(itemData)
 	const [userItems, setUserItems] = useState<number[]>([])
@@ -183,6 +184,23 @@ const EditForm = ({ itemData }: { itemData: ItemDataType }) => {
 	useEffect(() => {
 		const items = getItems()
 		setUserItems(items)
+	}, [])
+
+	useEffect(() => {
+		const checkSession = async () => {
+			try {
+				const response = await fetch('/api/verifySession', {
+					method: 'GET',
+					credentials: 'include',
+				})
+				if (response.status === 200) {
+					setIsAuth(true)
+				}
+			} catch (err) {
+				console.error('Ошибка проверки сессии:', err)
+			}
+		}
+		checkSession()
 	}, [])
 
 	const isUserAd = userItems.includes(itemData.id)
@@ -213,6 +231,28 @@ const EditForm = ({ itemData }: { itemData: ItemDataType }) => {
 		)
 	}
 
+	if (!isAuth) {
+		return (
+			<div className='flex w-full h-full items-center justify-center p-4'>
+				<div className='flex flex-col items-center space-y-2 p-6 border border-gray-300 rounded-lg shadow-lg bg-white text-center'>
+					<div className='flex items-center space-x-4'>
+						<Image
+							src='/unauthorized.webp'
+							alt='Unauthorized'
+							width={50}
+							height={50}
+						/>
+						<span className='text-base xsm:text-lg md:text-xl lg:text-2xl font-semibold'>
+							Вы не авторизованы
+						</span>
+					</div>
+					<span className='text-gray-600 text-sm md:text-base lg:text-lg'>
+						Авторизуйтесь, пожалуйста! (˃ᆺ˂)
+					</span>
+				</div>
+			</div>
+		)
+	}
 	return (
 		<div>
 			{state.error && (
