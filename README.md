@@ -30,8 +30,7 @@ A modern web application for buying and selling items, built with Next.js 15 and
 
 Before you begin, ensure you have installed:
 
-- Node.js (v16.8 or higher)
-- npm (v7 or higher)
+- Docker
 
 ## Installation
 
@@ -42,48 +41,53 @@ git clone https://github.com/kononoVikaReal/kupic
 cd kupic
 ```
 
-### Install dependencies:
-
-```bash
-npm install
-```
-
 ### Set up environment variables:
 
-Create a `.env` file and add the following:
+Create a `.env` file in `/frontend/.env` and add the following:
 
 ```ini
 NEXT_PUBLIC_API_URL=http://localhost:3001/items
 SESSION_SECRET=ANY_SECRET_KEY
 ```
 
-## Running the Application
+## Running the Application with Docker
 
-### Development Mode:
+### Build and start the project with Docker:
 
-Start the development server:
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### Production Mode:
-
-Build the application:
+Use docker-compose to build and start the containers.
+Note:
+The frontend container is named frontend (important for the setup).
+The backend container is named backend (important for the setup).
 
 ```bash
-npm run build
+docker-compose up --build
 ```
 
-Start the production server:
+### Access the Application:
+
+The frontend should be available at http://localhost:3000 and the backend API at http://localhost:3001.
+
+## Stopping the Application
+
+To stop the Docker containers, run:
 
 ```bash
-npm start
+docker-compose down
 ```
 
-## Project Structure
+Or write:
+
+```bash
+docker ps
+```
+
+And then manually stop frontend and backend containers:
+
+```bash
+docker stop <container_name>
+```
+
+## Frontend Project Structure
 
 ```
 kupic/
@@ -97,7 +101,7 @@ kupic/
 └── public/               # Static public assets
 ```
 
-## API Routes
+## Frontend API Routes
 
 The application uses RESTful API endpoints:
 
@@ -138,15 +142,6 @@ POST    /api/login        # User authorization and session saving in cookies
 3. Push to the branch
 4. Create a Pull Request
 
-## Scripts
-
-```bash
-npm run dev     # Start development server
-npm run build   # Build production application
-npm start      # Start production server
-npm run lint    # Run ESLint
-```
-
 ## Notes
 
 - Ensure all environment variables are properly set before running the application.
@@ -154,7 +149,7 @@ npm run lint    # Run ESLint
 
 ## Template Data
 
-- In the file `templateData.txt` In folder `/public`, you will find objects that you can POST to [/api/items](http://localhost:3001/items) to have something to work with.
+- In the file `templateData.txt` In folder `/frontend/public`, you will find objects that you can POST to [/api/items](http://localhost:3001/items) to have something to work with.
 
 ## License
 
