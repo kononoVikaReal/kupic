@@ -54,6 +54,7 @@ Create a `.env` file and add the following:
 
 ```ini
 NEXT_PUBLIC_API_URL=http://localhost:3001/items
+SESSION_SECRET=ANY_SECRET_KEY
 ```
 
 ## Running the Application
