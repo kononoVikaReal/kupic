@@ -1,0 +1,14 @@
+services:
+  frontend:
+    build: ./frontend # Путь к фронтенду
+    ports:
+      - '3000:3000' # Пробрасываем порт
+    depends_on:
+      - backend # Фронт зависит от бэка
+
+  backend:
+    build: ./backend # Путь к бэкенду
+    ports:
+      - '3001:3001'
+    environment:
+      - NODE_ENV=production
