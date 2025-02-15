@@ -146,10 +146,13 @@ POST    /api/login        # User authorization and session saving in cookies
 
 - Ensure all environment variables are properly set before running the application.
 - The API (backend) server must be running on port `3001` for local API calls.
+- For authorization use these credentials:
+- login: test
+- password: test
 
 ## Template Data
 
-- In the file `templateData.txt` In folder `/frontend/public`, you will find objects that you can POST to [/api/items](http://localhost:3001/items) to have something to work with.
+- In the file `templateData.txt` In folder `/frontend/public`, you will find objects that you can POST to (http://localhost:3001/items) to have something to work with.
 
 ## License
 
