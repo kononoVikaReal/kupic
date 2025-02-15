@@ -53,8 +53,19 @@ const serviceSchema = z.object({
 	workSchedule: z.string().optional(),
 })
 
+// Валидационная схема для авторизации
+const loginSchema = z.object({
+	username: z
+		.string()
+		.min(4, { message: 'Минимальная длина логина 8 символов!' }),
+	password: z
+		.string()
+		.min(8, { message: 'Минимальная длина пароля 8 символов!' }),
+})
+
 // Базовый URL для отправки запросов
-const API_BASE_URL = 'http://localhost:3000/api/items'
+const API_ITEMS_URL = 'http://localhost:3000/api/items'
+const API_BASE_URL = 'http://localhost:3000'
 
 export const addAd = async (
 	prevState: {
@@ -211,7 +222,7 @@ export const addAd = async (
 		...additionalData,
 	}
 	// Отправляем запрос
-	const response = await fetch(API_BASE_URL, {
+	const response = await fetch(API_ITEMS_URL, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -389,7 +400,7 @@ export const editAd = async (
 
 	try {
 		// Отправляем PUT-запрос
-		const response = await fetch(`${API_BASE_URL}/${baseData.id}`, {
+		const response = await fetch(`${API_ITEMS_URL}/${baseData.id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -412,11 +423,87 @@ export const editAd = async (
 			message: 'Объявление успешно обновлено!',
 		}
 	} catch (error) {
-		console.error('Error updating ad:', error)
+		console.error('Ошибка при обновлении объявления:', error)
 		return {
 			success: false,
 			error: true,
 			message: 'Ошибка при обновлении объявления!',
+		}
+	}
+}
+
+export const login = async (
+	prevState: {
+		success: boolean
+		error: boolean
+		message: string
+		username: string
+		password: string
+	},
+	formData: FormData
+) => {
+	const loginData = {
+		username: formData.get('username') as string,
+		password: formData.get('password') as string,
+	}
+	const loginValidation = loginSchema.safeParse(loginData)
+	if (!loginValidation.success) {
+		return {
+			success: false,
+			error: true,
+			message: loginValidation.error.errors[0].message,
+			username: loginData.username,
+			password: loginData.password,
+		}
+	}
+	try {
+		const response = await fetch(`${API_BASE_URL}/api/login`, {
+			method: 'POST',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(loginData),
+		})
+
+		if (!response.ok) {
+			const errorData = await response.json()
+			return {
+				success: false,
+				error: true,
+				message: errorData.error || 'Ошибка при авторизации',
+				username: loginData.username,
+				password: loginData.password,
+			}
+		}
+
+		// Проверяем, получили ли мы файл cookie в заголовках ответов
+		const cookies = response.headers.get('set-cookie')
+		if (!cookies) {
+			return {
+				success: false,
+				error: true,
+				message: 'No authentication cookie received',
+				username: loginData.username,
+				password: loginData.password,
+			}
+		}
+
+		return {
+			success: true,
+			error: false,
+			message: 'Успешная авторизация!',
+			username: loginData.username,
+			password: loginData.password,
+		}
+		// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	} catch (error) {
+		return {
+			success: false,
+			error: true,
+			message: 'Network or server error occurred',
+			username: loginData.username,
+			password: loginData.password,
 		}
 	}
 }

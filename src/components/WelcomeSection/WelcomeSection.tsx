@@ -2,6 +2,9 @@
 const API_BASE_URL = 'http://localhost:3000/api/items'
 const WelcomeSection = async () => {
 	const res = await fetch(`${API_BASE_URL}?welcome=true`)
+	if (!res.ok) {
+		return <div>Ошибка загрузки данных с сервера</div>
+	}
 	const data = await res.json()
 	console.log('Полученные данные:', data)
 	console.log('Тип данных:', Array.isArray(data)) // Проверяем, это ли массив

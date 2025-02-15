@@ -6,6 +6,7 @@ import Link from 'next/link'
 export const dynamic = 'force-dynamic'
 // Отключаем кэширование запросов на выборку, чтобы всегда получать свежие данные
 export const fetchCache = 'force-no-store'
+export const revalidate = 0
 
 export default function Home() {
 	return (
